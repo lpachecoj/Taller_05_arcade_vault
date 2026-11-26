@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { GAMES, seededScores } from "@/lib/data";
@@ -5,6 +6,15 @@ import { Leaderboard } from "@/components/leaderboard";
 
 export function generateStaticParams() {
   return GAMES.map((g) => ({ id: g.id }));
+}
+
+export async function generateMetadata({
+  params,
+}: PageProps<"/juegos/[id]">): Promise<Metadata> {
+  const { id } = await params;
+  const game = GAMES.find((g) => g.id === id);
+  if (!game) return { title: "Juego no encontrado" };
+  return { title: game.title, description: game.short };
 }
 
 export default async function GameDetail({ params }: PageProps<"/juegos/[id]">) {

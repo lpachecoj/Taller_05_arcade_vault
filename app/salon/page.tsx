@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import { HallOfFame } from "@/components/hall-of-fame";
+
+export const metadata: Metadata = {
+  title: "Salón de la Fama",
+  description: "Los mejores marcadores de cada juego de Arcade Vault.",
+};
 
 export default function SalonPage() {
   return <HallOfFame />;
