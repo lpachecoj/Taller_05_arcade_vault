@@ -142,7 +142,7 @@ export function GamePlayer({ game }: { game: Juego }) {
               <button type="button" className="btn" onClick={restart}>
                 JUGAR DE NUEVO
               </button>
-              <Link href="/" className="btn magenta">
+              <Link href="/games" className="btn magenta">
                 VOLVER AL VAULT
               </Link>
             </div>

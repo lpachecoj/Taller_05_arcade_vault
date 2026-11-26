@@ -15,7 +15,7 @@ export default function NotFound() {
       <p style={{ color: "var(--ink-faint)", marginBottom: 32 }}>
         Este cartucho no existe en el Vault. <span className="blink">_</span>
       </p>
-      <Link href="/" className="btn lg">
+      <Link href="/games" className="btn lg">
         VOLVER AL VAULT
       </Link>
     </div>
