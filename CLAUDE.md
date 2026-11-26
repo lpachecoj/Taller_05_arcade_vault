@@ -6,21 +6,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 `arcade-vault` es un proyecto recién generado con `create-next-app` (App Router, TypeScript, Tailwind). Por ahora solo existe la plantilla por defecto: `app/page.tsx` y los metadatos de `app/layout.tsx` ("Create Next App") son placeholders. No hay tests, ni directorio `src/`, ni rutas adicionales, ni repositorio git.
 
-## Comandos
-
-Gestor de paquetes: npm (scripts en `package.json`).
-
-- `npm run dev` — servidor de desarrollo (Turbopack)
-- `npm run build` — build de producción
-- `npm run start` — servir el build
-- `npm run lint` — ESLint (`eslint.config.mjs`, usa `eslint-config-next`)
-- `npx tsc --noEmit` — verificación de tipos (no hay script dedicado)
-
-No hay framework de tests configurado.
 
 ## Next.js no es el que conoces
 
 `AGENTS.md` exige leer la guía correspondiente en `node_modules/next/dist/docs/` antes de escribir código: esta versión (Next 16.4.x, React 19.3) tiene cambios incompatibles con lo que se conoce de versiones anteriores. Las guías están organizadas en `01-app/` (App Router, el que usa este proyecto) y `02-pages/` (no aplica).
+
+## Skills
+
+Usa siempre /frontend-desing para diseñar la interfax de usuario.
 
 ## Arquitectura y configuración no obvia
 
