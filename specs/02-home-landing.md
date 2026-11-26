@@ -1,6 +1,6 @@
 # SPEC 02 — Home (landing) de Arcade Vault
 
-> **Status:** aprobado
+> **Status:** implementado
 > **Depends on:** SPEC 01 (reutiliza `GAMES`, `Link`, navbar, footer y `app/globals.css`)
 > **Date:** 2026-11-26
 > **Objective:** Implementar la Home en `/` portando `references/templates/home-about/home.jsx`, mover la Biblioteca a `/games` y añadir el enlace "Inicio" al navbar.
