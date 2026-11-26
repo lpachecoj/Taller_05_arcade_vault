@@ -14,3 +14,15 @@ https://github.com/Klerith/fernando-skills
 ```bash
 npx skills@latest add Klerith/fernando-skills
 ```
+
+## Comandos
+
+Gestor de paquetes: npm (scripts en `package.json`).
+
+- `npm run dev` — servidor de desarrollo (Turbopack)
+- `npm run build` — build de producción
+- `npm run start` — servir el build
+- `npm run lint` — ESLint (`eslint.config.mjs`, usa `eslint-config-next`)
+- `npx tsc --noEmit` — verificación de tipos (no hay script dedicado)
+
+No hay framework de tests configurado.
