@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { GAMES, seededScores } from "@/lib/data";
@@ -17,7 +18,17 @@ export async function generateMetadata({
   return { title: game.title, description: game.short };
 }
 
-export default async function GameDetail({ params }: PageProps<"/juegos/[id]">) {
+// La página no lee `params`: lo hace el hijo dentro de <Suspense>, para que el
+// App Shell no quede atado a una URL (ver guía de Partial Prefetching).
+export default function GameDetailPage({ params }: PageProps<"/juegos/[id]">) {
+  return (
+    <Suspense fallback={<div className="av-detail" />}>
+      <GameDetail params={params} />
+    </Suspense>
+  );
+}
+
+async function GameDetail({ params }: Pick<PageProps<"/juegos/[id]">, "params">) {
   const { id } = await params;
   const game = GAMES.find((g) => g.id === id);
   if (!game) notFound();
@@ -65,7 +76,7 @@ export default async function GameDetail({ params }: PageProps<"/juegos/[id]">) 
           </div>
           <div className="detail-actions">
             <Link href={`/juegos/${game.id}/jugar`} className="btn xl pulse">
-              ▶&nbsp; JUGAR AHORA
+              ▶ JUGAR AHORA
             </Link>
             <Link href="/" className="btn ghost lg">
               VOLVER AL VAULT
