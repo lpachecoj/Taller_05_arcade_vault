@@ -91,26 +91,26 @@ Cada paso deja la app compilando y ejecutable (`npm run dev`).
 
 ## Criterios de aceptación
 
-- [ ] `npm run build` termina sin errores de TypeScript y `npm run lint` sin errores.
-- [ ] `/` y `/games` responden 200; `/` muestra la Home y `/games` muestra la Biblioteca con 8 tarjetas.
-- [ ] La Home contiene, en orden: hero, "¿POR QUÉ ARCADE VAULT?", "JUEGOS DISPONIBLES AHORA", stats, "ACTIVIDAD EN VIVO", "PRECIOS" y "¿LISTO PARA JUGAR?".
-- [ ] El hero muestra el título "EL ARCADE / CLÁSICO ESTÁ / DE VUELTA" y 8 siluetas decorativas con `aria-hidden="true"`.
-- [ ] La sección de características muestra 4 tarjetas y la de juegos muestra exactamente 6 mini-tarjetas (los 6 primeros de `GAMES`).
-- [ ] Clic en una mini-tarjeta navega a `/juegos/[id]` del juego correspondiente.
-- [ ] "EXPLORAR JUEGOS", "VER TODOS LOS JUEGOS →" e "INSERTAR MONEDA →" navegan a `/games`.
-- [ ] "CREAR CUENTA" y "EMPEZAR GRATIS →" navegan a `/acceso`; "VER SALÓN →" navega a `/salon`.
-- [ ] El ticker muestra 7 filas y el top del día 5 filas; las 3 primeras del top tienen clase `top1`/`top2`/`top3`.
-- [ ] La sección de precios muestra "$0 / SIEMPRE", 6 ítems de lista y 3 preguntas frecuentes.
-- [ ] Las secciones con `.reveal` pasan a visibles (`.in`) al entrar en el viewport.
-- [ ] Con `IntersectionObserver` ausente o JavaScript deshabilitado, el contenido de la Home sigue siendo visible.
-- [ ] El navbar muestra "Inicio" antes de "Biblioteca"; "Inicio" está activo solo en `/`; "Biblioteca" está activo en `/games`, `/juegos/bloque-buster` y `/juegos/bloque-buster/jugar`; "Salón de la Fama" en `/salon`.
-- [ ] El navbar no muestra el enlace "Acerca de".
-- [ ] "VOLVER AL VAULT" en Detalle, Reproductor y 404 navega a `/games`.
-- [ ] El inicio de sesión y "JUGAR COMO INVITADO" siguen redirigiendo a `/`.
-- [ ] `grep` en `app/globals.css` no encuentra `@keyframes` duplicados con el mismo nombre.
-- [ ] A 375 px la Home no tiene scroll horizontal, las grillas de características y mini-tarjetas se reorganizan y el menú hamburguesa funciona con el enlace "Inicio".
-- [ ] La consola del navegador no muestra errores de hidratación en `/` ni en `/games`.
-- [ ] Los criterios de SPEC 01 que citan la Biblioteca en `/` quedan sustituidos por `/games`, y las pantallas de SPEC 01 siguen respondiendo 200.
+- [x] `npm run build` termina sin errores de TypeScript y `npm run lint` sin errores.
+- [x] `/` y `/games` responden 200; `/` muestra la Home y `/games` muestra la Biblioteca con 8 tarjetas.
+- [x] La Home contiene, en orden: hero, "¿POR QUÉ ARCADE VAULT?", "JUEGOS DISPONIBLES AHORA", stats, "ACTIVIDAD EN VIVO", "PRECIOS" y "¿LISTO PARA JUGAR?".
+- [x] El hero muestra el título "EL ARCADE / CLÁSICO ESTÁ / DE VUELTA" y 8 siluetas decorativas con `aria-hidden="true"`.
+- [x] La sección de características muestra 4 tarjetas y la de juegos muestra exactamente 6 mini-tarjetas (los 6 primeros de `GAMES`).
+- [x] Clic en una mini-tarjeta navega a `/juegos/[id]` del juego correspondiente.
+- [x] "EXPLORAR JUEGOS", "VER TODOS LOS JUEGOS →" e "INSERTAR MONEDA →" navegan a `/games`.
+- [x] "CREAR CUENTA" y "EMPEZAR GRATIS →" navegan a `/acceso`; "VER SALÓN →" navega a `/salon`.
+- [x] El ticker muestra 7 filas y el top del día 5 filas; las 3 primeras del top tienen clase `top1`/`top2`/`top3`.
+- [x] La sección de precios muestra "$0 / SIEMPRE", 6 ítems de lista y 3 preguntas frecuentes.
+- [x] Las secciones con `.reveal` pasan a visibles (`.in`) al entrar en el viewport.
+- [x] Con `IntersectionObserver` ausente o JavaScript deshabilitado, el contenido de la Home sigue siendo visible.
+- [x] El navbar muestra "Inicio" antes de "Biblioteca"; "Inicio" está activo solo en `/`; "Biblioteca" está activo en `/games`, `/juegos/bloque-buster` y `/juegos/bloque-buster/jugar`; "Salón de la Fama" en `/salon`.
+- [x] El navbar no muestra el enlace "Acerca de".
+- [x] "VOLVER AL VAULT" en Detalle, Reproductor y 404 navega a `/games`.
+- [x] El inicio de sesión y "JUGAR COMO INVITADO" siguen redirigiendo a `/`.
+- [x] `grep` en `app/globals.css` no encuentra `@keyframes` duplicados con el mismo nombre.
+- [x] A 375 px la Home no tiene scroll horizontal, las grillas de características y mini-tarjetas se reorganizan y el menú hamburguesa funciona con el enlace "Inicio".
+- [x] La consola del navegador no muestra errores de hidratación en `/` ni en `/games`.
+- [x] Los criterios de SPEC 01 que citan la Biblioteca en `/` quedan sustituidos por `/games`, y las pantallas de SPEC 01 siguen respondiendo 200.
 
 ## Decisiones
 
@@ -124,6 +124,8 @@ Cada paso deja la app compilando y ejecutable (`npm run dev`).
 - **Sí:** mantener `/juegos/[id]` aunque la Biblioteca sea `/games`. Renombrarlo exige otra spec y rompe URLs ya cubiertas por SPEC 01. Queda una inconsistencia de idioma entre `/games` y `/juegos`; si molesta, se resuelve en una spec de renombrado.
 - **Supuesto:** "VOLVER AL VAULT" (Detalle, Reproductor, 404) apunta a `/games`, porque su sentido es volver a la biblioteca. La redirección tras login/invitado se mantiene en `/`, que ahora es la Home.
 - **Sí:** `Reveal` como Client Component pequeño, sin convertir toda la Home en cliente.
+- **Sí (ajuste en la implementación):** corregir en `app/globals.css` dos desbordamientos a 375 px heredados de SPEC 01, el navbar (`@media (max-width: 480px)`) y la tabla del Salón, para cumplir el criterio de "sin scroll horizontal". Se aceptó la excepción porque sin ellos el criterio era inalcanzable.
+- **Sí (ajuste en la implementación):** excluir `references/**` de ESLint y añadir `.playwright-mcp/` a `.gitignore`. Los prototipos de referencia no son código de la app y hacían fallar `npm run lint`.
 
 ## Riesgos
 
