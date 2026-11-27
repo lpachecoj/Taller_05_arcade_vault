@@ -6,12 +6,18 @@ interface RevealProps {
   as?: "section" | "div";
   className?: string;
   children: ReactNode;
+  "aria-hidden"?: boolean | "true" | "false";
 }
 
 // Añade la clase `.in` cuando el elemento entra en el viewport (animación `.reveal`).
 // El HTML del servidor trae `.reveal` sin `.in`; el CSS lo deja visible si no hay JS
 // (`@media (scripting: none)`). Si no existe IntersectionObserver, se muestra de inmediato.
-export function Reveal({ as = "section", className = "", children }: RevealProps) {
+export function Reveal({
+  as = "section",
+  className = "",
+  children,
+  "aria-hidden": ariaHidden,
+}: RevealProps) {
   const Tag: ElementType = as;
   const ref = useRef<HTMLDivElement>(null); // también sirve para <section>: solo se usa classList
 
@@ -38,7 +44,7 @@ export function Reveal({ as = "section", className = "", children }: RevealProps
   }, []);
 
   return (
-    <Tag ref={ref} className={(className + " reveal").trim()}>
+    <Tag ref={ref} className={(className + " reveal").trim()} aria-hidden={ariaHidden}>
       {children}
     </Tag>
   );
